@@ -4,16 +4,12 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-    entry: './path/to/my/entry/file.js',
-    mode: 'production',
     target: 'web',
     devtool: 'inline-source-map',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'my-first-webpack.bundle.js',
     },
     devServer: {
-        port:8081,
         historyApiFallback: true,
         open: true,
         compress: true,
@@ -40,14 +36,8 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-              use: [
-                MiniCssExtractPlugin.loader,
-                {
-                  loader: "style-loader"
-                },
-                {
-                  loader: "css-loader"
-                }
+                use: [
+                    MiniCssExtractPlugin.loader, 'css-loader'
                 ],
             },
           {
@@ -58,7 +48,6 @@ module.exports = {
             test: /\.png$/,
             type: 'asset/resource',
           },
-          { test: /\.txt$/, use: 'raw-loader' }
         ],
     },
     plugins: [
